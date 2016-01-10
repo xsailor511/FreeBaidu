@@ -1,0 +1,17 @@
+{
+	"manifest_version": 2,
+	"name": "FreeBaidu",
+	"version": "0.9.0",
+	"description": "hide baidu ads",
+	"background": { "scripts": ["js/background.js"] },
+	"permissions": ["tabs"],
+	"browser_action":{
+	"default_icon": "icon_4.png",
+		"default_title": "FreeBaidu",
+		"default_popup": "popup.html"
+	},
+	"content_scripts":[{
+		"matches": ["http://*/*", "https://*/*"],
+		"js":["js/jquery-2.0.0.min.js", "js/content_script.js"]
+	}]
+}
