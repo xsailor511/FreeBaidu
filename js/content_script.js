@@ -46,6 +46,7 @@ window.onload = function(){
   		setTimeout(freeSinaAds,2000);
   		document.onclick = hideSina;
   	}
+  	//过滤百度知道广告
   	if(response.domainURL=="zhidao.baidu.com"){
   		var left_promotion = document.getElementById('left-promotion');
   		if(left_promotion!=null){
@@ -55,6 +56,43 @@ window.onload = function(){
   		if(qb_side!=null){
   			qb_side.remove();
   		}
+  		
+  		var header = document.getElementById('header');
+  		header.style.background = "";
+  	}
+  	
+  	if(response.domainURL=="tieba.baidu.com"){
+//		var regex2 = /\"([^\"]*)clearfix\"/;
+//		var matched = bodyString.match(regex2);
+//		if(matched!=undefined&&matched[0]!=null){
+//			var idString = matched[0].slice(1,matched[0].length-1);
+//			var clearfix = document.getElementsByClassName(idString);
+//			if(clearfix==null){
+//				console.log('close is null');
+//			}else{
+//				for(var i=0;i<clearfix.length;i++){
+//					if(clearfix[i]!=null){
+//						console.log('remove clear');
+//						clearfix.innerText = "";
+//						//clearfix[i].remove();
+//					}
+//				}
+//				
+//			}
+//			
+//		}
+
+	var imgs = document.getElementsByTagName('img');
+	if(imgs!=null){
+		for(var i=0;i<imgs.length;i++){
+			if(imgs[i].src == "http://tb1.bdstatic.com/tb/cms/ngmis/adsense/file_1420437480279.jpg"){
+				imgs[i].click();
+			}
+		}
+	}else{
+		console.log('no img');
+	}
+  		
   	}
 	});
 }
