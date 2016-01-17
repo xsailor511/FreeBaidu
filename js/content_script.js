@@ -1,7 +1,3 @@
-//var baiduAdsLeft = $('div.BAIDU_EXP_UNION__wrapper_u972322_0_left');
-//baiduAdsLeft.removeChild()
-//document.body.removeChild('BAIDU_EXP_UNION__wrapper_u972322_0_left');
-//document.getElementById('BAIDU_EXP_UNION__wrapper_u972322_0_left').innerHTML = '';
 
 
 //console.log(chrome.extension.getURL);
@@ -28,6 +24,20 @@ if(matched!=null){
 	console.log('the matched is null haha');
 }
 
+var wdweps1 = document.getElementById('w-1dweps');
+if(wdweps1!=null){
+	wdweps1.remove();
+}
+
+//过滤搜狗推广
+var frame3 = document.getElementById('starIframe_wrapper_3');
+var frame4 = document.getElementById('starIframe_wrapper_4');
+if(frame3!=null){
+	frame3.remove();
+}
+if(frame4!=null){
+	frame4.remove();
+}
 window.onload = function(){
 	console.log('window onload');
 	chrome.extension.sendRequest({action: "checkURL"}, function(response) {
@@ -35,6 +45,16 @@ window.onload = function(){
   	if(response.domainURL=="blog.sina.com.cn"){
   		setTimeout(freeSinaAds,2000);
   		document.onclick = hideSina;
+  	}
+  	if(response.domainURL=="zhidao.baidu.com"){
+  		var left_promotion = document.getElementById('left-promotion');
+  		if(left_promotion!=null){
+  			left_promotion.remove();
+  		}
+  		var qb_side = document.getElementById('qb-side');
+  		if(qb_side!=null){
+  			qb_side.remove();
+  		}
   	}
 	});
 }
