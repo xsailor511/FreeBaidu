@@ -17,3 +17,27 @@ function checkForValidUrl(tabId, changeInfo, tab) {
 };
 
 chrome.tabs.onUpdated.addListener(checkForValidUrl);
+
+chrome.extension.onRequest.addListener(
+  function(request, sender, sendResponse) {
+  	if(request.action==null){
+  		console.log("the action is null....");
+  	}else if(request.action=="checkURL"){
+  		var domainURL = getDomainFromUrl(sender.tab.url);
+  		sendResponse({domainURL:domainURL});
+  	}
+  	
+//  console.log(sender.tab ?
+//              "from a content script:" + sender.tab.url :
+//              "from the extension");
+//  if (request.greeting == "hello")
+//    sendResponse({farewell: "goodbye"});
+//  else
+//    sendResponse({}); // snub them.
+  });
+  
+chrome.windows.onFocusChanged.addListener(function(windowId) {
+	
+	console.log('windowId = '+ windowId);
+	
+});
